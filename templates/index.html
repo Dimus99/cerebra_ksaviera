@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru" prefix="og: http://ogp.me/ns#" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bootstrap5.ru/examples/cover"/>
+    <meta name="description"
+          content="Церебра Ксавьера">
+    <meta name="author" content="Dmitriy Shelpyakov and Kirill David">
+    <meta name="docsearch:language" content="ru">
+    <meta name="docsearch:version" content="5.0">
+    <title>Церебра Ксавьера</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootstrap5.ru/css/docs.css">
+    <!-- Favicons -->
+    <link rel="manifest" href="https://bootstrap5.ru/img/favicons/manifest.json">
+    <meta name="theme-color" content="#7952b3">
+    <!-- Facebook -->
+    <meta property="og:url" content="https://bootstrap5.ru/examples/cover">
+    <meta property="og:title" content="Церебра Ксавьера">
+    <meta property="og:description"
+          content="Церебра Ксавьера">
+    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="500">
+    <style>
+    * {
+    color: black
+    }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      footer{
+      color:black
+      }
+      textarea{
+      width:60%;
+      height: 35px;
+      padding-left:10px;
+
+      border-radius:10px;
+      outline:none;
+      }
+
+
+
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/css/examples/cover.css" rel="stylesheet">
+</head>
+<body class="d-flex h-100 text-center">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <h3 class="float-md-left mb-0">Команда "Кирилл и Давид"</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-right">
+                <a class="nav-link active" aria-current="page" href="/">Задача 1</a>
+                <a class="nav-link" href="/task2">Задача 2</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="px-3">
+        <h1>Найти подходящий проект?</h1>
+        <p class="lead">Введите описание нового открытого запроса и мы подберем для вас похожие проекты.</p>
+        <p class="lead">
+        <form method="post">
+            {% csrf_token %}
+
+            <textarea id="text" name="text">{{text}}</textarea>
+            <span ><span style="margin-left:10px">Количество ответов:</span> <input id="count" name="limit" type="number"
+                                       style="width: 45px; border-radius:25px; padding-left:10px; outline:none"
+                                       value="5">
+            </span>
+            <button class="btn btn-lg btn-secondary font-weight-bold border-white" style="background:red; border-radius:10px; width:10%; margin-bottom:25px" type="submit">Найти</Найти>
+            </button>
+
+        </form>
+        {% for elem in variants %}
+        <span>
+        <h3>{{elem.title}}</h3>
+        {% if elem.description %}
+        <h5 style="margin-left:80px; margin-right:80px">{{elem.description}}</h5>
+        {% endif %}
+        <b>Статус: {{elem.status}}</b><br>
+        Компания {{elem.company}}<br>
+        Функциональный заказчик: {{elem.FZ}}<br>
+
+        Контакт: {{elem.contact}}<br>
+        {{elem.phone}}
+        <hr/>
+        </span>
+        {% endfor %}
+
+
+    </main>
+
+    <footer class="mt-auto">
+        <p>телеграмм <a href="#">@dimasimilyan</a> и <a href="#">@Excel13nt</a>
+        </p>
+    </footer>
+</div>
+</body>
+</html>
